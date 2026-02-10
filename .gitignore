@@ -1,8 +1,3 @@
-# Python
-.venv/
-__pycache__/
-*.py[cod]
-
 # Local env (secrets)
 .env
 
@@ -12,3 +7,16 @@ __pycache__/
 
 # Test artifacts
 tests/tmp/
+
+# C compiler/VM build artifacts
+# (allow jatti.exe for out-of-box usage)
+#c/bin/
+*.obj
+#*.exe
+*.pdb
+*.ilk
+
+# VS Code extension generated files
+jatti-vscode-extension-c/node_modules/
+jatti-vscode-extension-c/dist/
+*.vsix

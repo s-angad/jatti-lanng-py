@@ -1,12 +1,11 @@
 # Jatti Language
 
-Jatti is a Punjabi-inspired programming language (interpreter + CLI) with a simple 2‑pane web playground and a VS Code extension.
+Jatti is a Punjabi-inspired programming language with a C-based compiler + bytecode VM and a VS Code extension.
 
 ## Important docs
 
 - Local setup (Windows): [LOCAL_SETUP.md](./LOCAL_SETUP.md)
 - Language basics (variables/operators/loops): [LANGUAGE_BASICS.md](./LANGUAGE_BASICS.md)
-- Deployment (Docker/Vercel/Render): [DEPLOYMENT.md](./DEPLOYMENT.md)
 
 Reference docs:
 
@@ -24,19 +23,59 @@ sun_we
 ja_we
 ```
 
-Run:
 
-```bash
-python cli.py run hello.jatti
+Run (no build needed!):
+
+```powershell
+.\jatti.cmd run hello.jatti
 ```
 
-Web playground:
+## C compiler/VM (no Python)
 
-```bash
-python playground_server.py
+This repo also includes an **MVP C-based compiler + bytecode VM** in `c/`.
+
+
+No build required! The VM is prebuilt.
+
+Run any .jatti file:
+
+```powershell
+.\jatti.cmd run path\to\program.jatti
 ```
 
-Open `http://127.0.0.1:8000/`.
+## VS Code extension (run via C VM)
+
+There is a publishable VS Code extension scaffold in `jatti-vscode-extension-c/`.
+
+What it does:
+
+- Adds a command: **Jatti: Run Current File (C VM)**
+- Runs the active `.jatti` file using the repo-local `jatti.cmd` wrapper (which calls `c\bin\jatti.exe`)
+
+
+Prerequisites:
+
+1. Open the repo root folder in VS Code (so `jatti.cmd` is in the workspace root)
+
+Build a `.vsix` package:
+
+```powershell
+cd jatti-vscode-extension-c
+npm install
+npm run package
+```
+
+Install the `.vsix` in VS Code:
+
+- Open the Extensions view
+- Click the `...` menu
+- **Install from VSIX...**
+
+Use it:
+
+- Open any `.jatti` file
+- Press `Ctrl+Shift+P`
+- Run: **Jatti: Run Current File (C VM)**
 
 ## Auth note (current default)
 
@@ -52,20 +91,6 @@ For variables/operators and core syntax, see [LANGUAGE_BASICS.md](./LANGUAGE_BAS
 - Comments: both `#` and `fuddu_chiz` are supported.
 - Logical operators: `ate` (AND), `ya_te` (OR), `nahi` (NOT).
 - Strings: both single quotes `'...'` and double quotes `"..."` work.
-
-## Run tests
-
-Interpreter regressions:
-
-```bash
-python tests\run_regressions.py
-```
-
-Interpreter + compile-to-Python regressions:
-
-```bash
-python tests\run_regressions.py --build
-```
 
 <!--
 
@@ -425,137 +450,17 @@ ja_we
 ## 📥 Installation
 
 ### Requirements
-- Python 3.6+
-- Windows/Mac/Linux
+- Windows 10/11
+- MSVC Build Tools (for building the C VM)
 
 ### Setup
 
-**Step 1: Clone Repository**
-```bash
-git clone https://github.com/s-angad/jatti-lang
+1. Build the C VM: see **C compiler/VM (no Python)** above
+2. Run programs with:
+
+```powershell
+.\jatti.cmd run program.jatti
 ```
-
-**Step 2: Run Programs**
-```bash
-python cli.py run hello.jatti
-```
-
-**Step 3: Build to Python (Optional)**
-```bash
-python cli.py build hello.jatti -o hello.py
-```
-
----
-
-## 🎨 VS Code Extension
-
-### Install Extension
-1. Open VS Code
-2. Go to Extensions (`Ctrl+Shift+X`)
-3. Search: **"Jatti Language"**
-4. Click **Install**
-
-### Features
-- ✅ Syntax highlighting
-- ✅ Run button (▶️)
-- ✅ Keyboard shortcuts (Ctrl+Shift+J)
-- ✅ Output panel
-- ✅ Error reporting
-
-### Usage
-1. Create `hello.jatti`
-2. Click ▶️ button
-3. See output instantly!
-
----
-
-## 📚 Documentation
-
-Complete documentation available:
-
-- **[Language Specification](./LANGUAGE_SPECIFICATION.md)** - Complete reference
-- **[Beginner Tutorial](./BEGINNER_TUTORIAL.md)** - Start here!
-- **[Intermediate Guide](./INTERMEDIATE_GUIDE.md)** - Advanced techniques
-- **[Advanced Topics](./ADVANCED_TOPICS.md)** - Best practices
-
----
-
-## 🌐 Web Playground
-
-Local 2-pane editor + output UI (no CLI commands needed):
-
-- See [PLAYGROUND.md](./PLAYGROUND.md)
-
-Docker demo:
-
-- `docker build -t jatti-playground .`
-- `docker run --rm -p 8000:8000 jatti-playground`
-
----
-
-## Deploy (Vercel)
-
-This repo includes a Vercel-ready setup:
-
-- Static UI is served from `frontend/` via [vercel.json](vercel.json) rewrites.
-- API runs as Vercel Python Functions under `api/`:
-    - `/api/run` → [api/run.py](api/run.py)
-    - `/api/healthz` → [api/healthz.py](api/healthz.py)
-
-Steps:
-
-1) Push the repo to GitHub.
-2) Import the repo in Vercel.
-3) Set Environment Variables in Vercel:
-    - Optional: `JATTI_REQUIRE_API_KEY=1` and `JATTI_API_KEY` (to enforce X-API-Key)
-     - Optional: `JATTI_TIMEOUT_SEC`, `JATTI_MAX_CODE_BYTES`, `JATTI_MAX_OUTPUT_BYTES`
-4) Deploy.
-
-Security note: this executes user-provided code. Use conservative limits; if you enable auth, use `JATTI_REQUIRE_API_KEY=1` + a strong `JATTI_API_KEY`.
-
----
-
-## Deploy (Render)
-
-Render deployment is included via a Blueprint file:
-
-- [render.yaml](render.yaml)
-
-Steps:
-
-1) In Render Dashboard: New → **Blueprint**.
-2) Select your GitHub repo.
-3) Render reads [render.yaml](render.yaml) and provisions the service.
-4) Deploy and open the provided `.onrender.com` URL.
-
-Notes:
-
-- Tune limits in Render env vars: `JATTI_TIMEOUT_SEC`, `JATTI_MAX_CODE_BYTES`, `JATTI_MAX_OUTPUT_BYTES`, `JATTI_RATE_*`.
-
----
-
-## 🔍 CLI Commands
-
-```bash
-# Run a program
-python cli.py run program.jatti
-
-# Build to Python
-python cli.py build program.jatti -o output.py
-
-# Format code
-python cli.py format program.jatti
-
-# Debug mode
-python cli.py run program.jatti --debug
-
-# Show help
-python cli.py --help
-```
-
----
-
----
 
 ## 🎓 Learning Path
 
@@ -601,14 +506,13 @@ MIT License - See [LICENSE](./LICENSE) file
 
 - Created: January 2025
 - Language: Jatti
-- Inspiration: Punjabi culture, Python simplicity
+- Inspiration: Punjabi culture
 
 ---
 
 ## 🙏 Acknowledgments
 
 Thanks to:
-- Python community for inspiration
 - Punjabi language speakers
 - All contributors and users
 
@@ -647,7 +551,7 @@ Thanks to:
 
 ```bash
 cd jatti-lang
-python cli.py run example.jatti
+jatti run example.jatti
 ```
 
 **Happy Coding with Jatti! ਜੱਟੀ 🚀**

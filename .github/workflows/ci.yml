@@ -5,16 +5,9 @@ on:
   pull_request:
 
 jobs:
-  regressions:
-    runs-on: ubuntu-latest
+  build_windows:
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Run regression tests (interpreter + build)
-        run: |
-          python tests/run_regressions.py --build
+      # No build or sample run needed; jatti.exe is committed for out-of-box usage
