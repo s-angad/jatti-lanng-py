@@ -42,7 +42,7 @@ def evaluate_expression_with_builtins(expr):
     if has_parens and fname in builtin_funcs:
         # Handle builtin function call
         args_str = expr[expr.find("(")+1:expr.find(")")]
-        args = [safe_eval(norm(arg.strip())) for arg in args_str.split(",") if arg.strip()]
+        args = [safe_eval(norm(arg)) for arg in split_args(args_str)]
         try:
             return builtin_funcs[fname](*args)
         except Exception as e:
@@ -93,7 +93,7 @@ def evaluate_with_functions(expr, norm_fn):
             break
         
         # Call the function
-        args = [arg.strip() for arg in args_str.split(',')]
+        args = split_args(args_str)
         params, body = functions[fname]
         
         if len(args) != len(params):
@@ -183,6 +183,75 @@ def indent_of(line):
 
 import re
 
+
+def split_args(args_str: str) -> list[str]:
+    """Split a comma-separated argument list, respecting nested brackets and quotes.
+
+    Example: '"a,b", [1,2], x' -> ['"a,b"', '[1,2]', 'x']
+    """
+
+    s = (args_str or "").strip()
+    if not s:
+        return []
+
+    args: list[str] = []
+    buf: list[str] = []
+
+    depth_paren = 0
+    depth_brack = 0
+    depth_brace = 0
+    in_single = False
+    in_double = False
+    escape = False
+
+    for ch in s:
+        if escape:
+            buf.append(ch)
+            escape = False
+            continue
+
+        if (in_single or in_double) and ch == "\\":
+            buf.append(ch)
+            escape = True
+            continue
+
+        if ch == '"' and not in_single:
+            in_double = not in_double
+            buf.append(ch)
+            continue
+
+        if ch == "'" and not in_double:
+            in_single = not in_single
+            buf.append(ch)
+            continue
+
+        if not in_single and not in_double:
+            if ch == '(':
+                depth_paren += 1
+            elif ch == ')':
+                depth_paren = max(0, depth_paren - 1)
+            elif ch == '[':
+                depth_brack += 1
+            elif ch == ']':
+                depth_brack = max(0, depth_brack - 1)
+            elif ch == '{':
+                depth_brace += 1
+            elif ch == '}':
+                depth_brace = max(0, depth_brace - 1)
+            elif ch == ',' and depth_paren == 0 and depth_brack == 0 and depth_brace == 0:
+                part = "".join(buf).strip()
+                if part:
+                    args.append(part)
+                buf = []
+                continue
+
+        buf.append(ch)
+
+    tail = "".join(buf).strip()
+    if tail:
+        args.append(tail)
+    return args
+
 def norm(expr):
     """Convert Jatti keywords to Python, protecting string literals"""
     
@@ -191,10 +260,11 @@ def norm(expr):
     string_placeholder = "__STRING_{}_"
     counter = 0
     
-    # Find all quoted strings and replace with placeholders
+    # Find all quoted strings (both single and double) and replace with placeholders
     i = 0
     result = ""
     while i < len(expr):
+        # Handle double quotes
         if expr[i] == '"':
             # Find matching closing quote
             j = i + 1
@@ -206,6 +276,21 @@ def norm(expr):
             j += 1  # Include closing quote
             
             # Store string with placeholder
+            string_key = string_placeholder.format(counter)
+            strings[string_key] = expr[i:j]
+            result += string_key
+            counter += 1
+            i = j
+        # Handle single quotes
+        elif expr[i] == "'":
+            j = i + 1
+            while j < len(expr) and expr[j] != "'":
+                if expr[j] == '\\':
+                    j += 2  # Skip escaped character
+                else:
+                    j += 1
+            j += 1  # Include closing quote
+
             string_key = string_placeholder.format(counter)
             strings[string_key] = expr[i:j]
             result += string_key
@@ -226,6 +311,7 @@ def norm(expr):
         r"\bnikka_ya_barabar\b": "<=",
         r"\bvadha_ya_barabar\b": ">=",
         r"\bhor\b": "and",
+        r"\bate\b": "and",
         r"\bya_te\b": "or",
         r"\bnahi\b": "not",
         r"\bsach\b": "True",
@@ -254,7 +340,7 @@ import re
 
 def validate_logical_syntax(stmt):
     # catches: hor hor, ya_te ya_te, hor ya_te, ya_te hor
-    bad_pattern = r"\b(hor|ya_te|nahi)\s+(hor|ya_te|nahi)\b"
+    bad_pattern = r"\b(hor|ate|ya_te|nahi)\s+(hor|ate|ya_te|nahi)\b"
 
 
 
@@ -632,7 +718,7 @@ def execute_statement(lines, i, base_indent):
 
 
     # comment
-    if stmt.startswith("fuddu_chiz"):
+    if stmt.startswith("fuddu_chiz") or stmt.startswith("#"):
         return i + 1
 
     # python import
@@ -746,8 +832,8 @@ def execute_statement(lines, i, base_indent):
         if " ban " not in f" {after} ":
             roast_error("chal_oye syntax galat hai. Format: chal_oye <var> ban <expr>", state.CURRENT_LINE)
 
-        left, expr = after.split("ban", 1)
-        target = left.strip()
+        target, expr = after.split(" ban ", 1)
+        target = target.strip()
         expr = expr.strip()
         if not target:
             roast_error(
@@ -793,7 +879,7 @@ def execute_statement(lines, i, base_indent):
             if has_parens and fname in builtin_funcs:
                 # Handle built-in function call
                 args_str = expr[expr.find("(")+1:expr.find(")")]
-                args = [safe_eval(norm(arg.strip())) for arg in args_str.split(",") if arg.strip()]
+                args = [safe_eval(norm(arg)) for arg in split_args(args_str)]
                 
                 try:
                     result = builtin_funcs[fname](*args)
@@ -803,7 +889,7 @@ def execute_statement(lines, i, base_indent):
             elif has_parens and fname in functions:
                 args_str = expr[expr.find("(")+1:expr.find(")")]
                 # Handle empty argument list properly
-                args = [arg.strip() for arg in args_str.split(",") if arg.strip()] if args_str.strip() else []
+                args = split_args(args_str)
                 params, body = functions[fname]
 
                 if len(args) != len(params):
@@ -850,7 +936,9 @@ def execute_statement(lines, i, base_indent):
                                 'upper_case_oye': lambda: obj.upper(),
                                 'lower_case_oye': lambda: obj.lower(),
                                 'tut_ja_oye': lambda arg=None: obj.split(arg) if arg else obj.split(),
-                                'jud_ja_oye': lambda arg: arg.join(str(x) for x in arg) if hasattr(arg, '__iter__') else obj.join([str(arg)]),
+                                'jud_ja_oye': lambda arg: obj.join(str(x) for x in arg)
+                                    if (hasattr(arg, '__iter__') and not isinstance(arg, (str, bytes, bytearray)))
+                                    else obj.join([str(arg)]),
                                 'badal_ja_oye': lambda old, new: obj.replace(old, new),
                                 'haiga_hai': lambda sub: sub in obj,
                                 'shuru_hunda_hai': lambda pre: obj.startswith(pre),
@@ -862,7 +950,7 @@ def execute_statement(lines, i, base_indent):
                                 try:
                                     # Parse arguments
                                     if args_str.strip():
-                                        method_args = [safe_eval(norm(arg.strip())) for arg in args_str.split(",")]
+                                        method_args = [safe_eval(norm(arg)) for arg in split_args(args_str)]
                                         result = string_methods[method_name](*method_args)
                                     else:
                                         result = string_methods[method_name]()
@@ -883,7 +971,7 @@ def execute_statement(lines, i, base_indent):
                             if method_name in list_methods:
                                 try:
                                     if args_str.strip():
-                                        method_args = [safe_eval(norm(arg.strip())) for arg in args_str.split(",")]
+                                        method_args = [safe_eval(norm(arg)) for arg in split_args(args_str)]
                                         result = list_methods[method_name](*method_args)
                                     else:
                                         result = list_methods[method_name]()
@@ -903,7 +991,7 @@ def execute_statement(lines, i, base_indent):
                             if method_name in dict_methods:
                                 try:
                                     if args_str.strip():
-                                        method_args = [safe_eval(norm(arg.strip())) for arg in args_str.split(",")]
+                                        method_args = [safe_eval(norm(arg)) for arg in split_args(args_str)]
                                         result = dict_methods[method_name](*method_args)
                                     else:
                                         result = dict_methods[method_name]()
@@ -1244,6 +1332,9 @@ def convert_line_to_python(line, *, base_dedent: int = 0, extra_indent: int = 0)
     if content.startswith("fuddu_chiz"):
         comment = content.replace("fuddu_chiz", "#", 1).strip()
         return py_indent + comment
+
+    if content.startswith("#"):
+        return py_indent + content
 
     # Variable declaration: chal_oye x ban expr
     if content.startswith("chal_oye ") and " ban " in content:
