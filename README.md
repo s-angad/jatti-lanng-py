@@ -47,6 +47,26 @@ API-key auth is **disabled by default**.
 
 For variables/operators and core syntax, see [LANGUAGE_BASICS.md](./LANGUAGE_BASICS.md).
 
+## Language notes (current)
+
+- Comments: both `#` and `fuddu_chiz` are supported.
+- Logical operators: `ate` (AND), `ya_te` (OR), `nahi` (NOT).
+- Strings: both single quotes `'...'` and double quotes `"..."` work.
+
+## Run tests
+
+Interpreter regressions:
+
+```bash
+python tests\run_regressions.py
+```
+
+Interpreter + compile-to-Python regressions:
+
+```bash
+python tests\run_regressions.py --build
+```
+
 <!--
 
 ---
