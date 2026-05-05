@@ -1,0 +1,42 @@
+{
+  "comments": {
+    "lineComment": "#"
+  },
+  "brackets": [
+    ["(", ")"],
+    ["[", "]"],
+    ["{", "}"]
+  ],
+  "autoClosingPairs": [
+    { "open": "(", "close": ")" },
+    { "open": "[", "close": "]" },
+    { "open": "{", "close": "}" },
+    { "open": "\"", "close": "\"" },
+    { "open": "'", "close": "'" }
+  ],
+  "surroundingPairs": [
+    ["(", ")"],
+    ["[", "]"],
+    ["{", "}"],
+    ["\"", "\""],
+    ["'", "'"]
+  ],
+  "indentationRules": {
+    "increaseIndentPattern": "^\\s*(sun_we|je\\b.*|nahin_taan_je\\b.*|nahin_taan\\b|jadon_tak\\b.*|har_ek\\b.*|kaam\\b.*|chal_koshish_karle\\b|pakad\\b.*)\\s*$",
+    "decreaseIndentPattern": "^\\s*(ja_we)\\s*$"
+  },
+  "onEnterRules": [
+    {
+      "beforeText": "^\\s*(sun_we|je\\b.*|nahin_taan_je\\b.*|nahin_taan\\b|jadon_tak\\b.*|har_ek\\b.*|kaam\\b.*|chal_koshish_karle\\b|pakad\\b.*)\\s*$",
+      "action": {
+        "indentAction": "indent"
+      }
+    },
+    {
+      "beforeText": "^\\s*ja_we\\s*$",
+      "action": {
+        "indentAction": "outdent"
+      }
+    }
+  ]
+}

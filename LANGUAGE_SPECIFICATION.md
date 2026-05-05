@@ -26,21 +26,20 @@
 
 ## Overview
 
-**Jatti** is a dynamically-typed, interpreted programming language designed to be accessible to Punjabi speakers and developers familiar with Python. It combines familiar programming concepts with Punjabi-influenced syntax.
+**Jatti** is a dynamically-typed programming language designed to be accessible to Punjabi speakers. It combines familiar programming concepts with Punjabi-influenced syntax.
 
 ### Key Features
 - 🇮🇳 Punjabi-inspired keywords (intuitive and memorable)
-- 🐍 Python-compatible (compiles to Python)
 - ⚡ Dynamic typing with automatic type coercion
-- 🔄 First-class functions and lambdas
-- 📚 Rich collection types (lists, dicts, tuples)
+- 🔄 First-class functions
+- 📚 Rich collection types (lists, dicts)
 - 🛡️ Exception handling with chal_koshish_karle/catch
 - 🎯 Simple, readable syntax
 
 ### Design Philosophy
 - **Accessibility:** Non-programmers should understand the syntax
 - **Expressiveness:** Powerful enough for real programs
-- **Compatibility:** Works with Python libraries seamlessly
+- **Pragmatism:** Keep the core language small and readable
 
 ---
 
@@ -48,19 +47,19 @@
 
 ### Comments
 ```jatti
-# This is a comment
-# Comments start with # and go to end of line
+fuddu_chiz This is a comment
+fuddu_chiz start with fudd_chiz and go to end of line
 ```
 
 ### Programs
 Every Jatti program has this structure:
 ```jatti
 sun_we
-    # Your code here
+    fuddu_chiz Your code here
 ja_we
 ```
 
-- `sun_we` = Program start (like Python's `if __name__ == "__main__":`)
+- `sun_we` = Program start
 - `ja_we` = Program end
 - Code inside must be indented with 4 spaces
 
@@ -122,8 +121,6 @@ chal_oye empty ban []
 chilla_we numbers[0]      # Output: 1
 chilla_we numbers[-1]     # Output: 5 (last element)
 
-# Slicing
-chal_oye slice ban numbers[1:3]   # [2, 3]
 ```
 
 #### Dictionaries
@@ -139,14 +136,6 @@ chilla_we person["naam"]         # Output: Singh
 chilla_we person.get("country")  # Output: None (if key doesn't exist)
 ```
 
-#### Tuples (Immutable)
-```jatti
-chal_oye point ban (10, 20, 30)
-chilla_we point[0]    # Output: 10
-```
-
----
-
 ## Operators
 
 ### Arithmetic
@@ -155,7 +144,7 @@ chal_oye sum ban 10 + 5        # 15
 chal_oye diff ban 10 - 5       # 5
 chal_oye product ban 10 * 5    # 50
 chal_oye quotient ban 10 / 5   # 2
-chal_oye fuddu_chizainder ban 10 % 3  # 1
+chal_oye fuddu_chiz remainder ban 10 % 3  # 1
 chal_oye power ban 2 ** 3      # 8
 ```
 
@@ -174,7 +163,7 @@ je a nikka_ya_barabar b       # a <= b (less than or equal)
 
 ### Logical
 ```jatti
-je (x vadha_hai 5) hor (y nikka_hai 3)        # OR
+je (x vadha_hai 5) ya_te (y nikka_hai 3)        # OR
 je (x vadha_hai 5) ate (y nikka_hai 3)        # AND
 je nahi (x barabar 0)                     # NOT
 ```
@@ -230,7 +219,7 @@ har_ek i range(10)
     chilla_we i
 
 har_ek key, value person
-    chilla_we key hor value
+    chilla_we key + value
 ```
 
 **Keywords:**
@@ -256,7 +245,7 @@ har_ek i range(10)
 ### Definition
 ```jatti
 kaam greet(name)
-    chilla_we "Hello, " hor name
+    chilla_we "Hello, " + name
 ja_we
 
 greet("Singh")
@@ -276,7 +265,7 @@ chilla_we sum      # Output: 8
 ### Default Parameters
 ```jatti
 kaam greet(name, greeting="Hello")
-    chilla_we greeting hor ", " hor name
+    chilla_we greeting + ", " + name
 ja_we
 
 greet("Singh")           # Output: Hello, Singh
@@ -290,16 +279,6 @@ kaam get_coordinates()
 ja_we
 
 chal_oye x, y ban get_coordinates()
-```
-
-### Lambda Functions
-```jatti
-chal_oye square ban lambda(x) x * x
-chilla_we square(5)        # Output: 25
-
-# With multiple arguments
-chal_oye * ban lambda(a, b) a * b
-chilla_we *(3, 4)   # Output: 12
 ```
 
 ### Recursion
@@ -437,7 +416,7 @@ chal_oye mapping ban {x: x*2 har_ek x range(1, 5)}
 chal_koshish_karle
     chal_oye result ban 10 / 0
 pakad error
-    chilla_we "Error: " hor error
+    chilla_we "Error: " + error
 ja_we
 ```
 
@@ -473,71 +452,6 @@ ja_we
 ```
 
 ---
-
-## Advanced Features
-
-### Global Variables
-```jatti
-chal_oye global_var ban "global"
-
-kaam modify_global()
-    global global_var
-    chal_oye global_var ban "modified"
-ja_we
-
-modify_global()
-chilla_we global_var    # Output: modified
-```
-
-### Variable Unpacking
-```jatti
-chal_oye a, b, c ban [1, 2, 3]
-chilla_we a            # 1
-chilla_we b            # 2
-chilla_we c            # 3
-
-chal_oye x, y ban (10, 20)
-```
-
-### Ternary Expressions
-```jatti
-chal_oye status ban "Active" je user_logged_in sach khaali "Inactive"
-```
-
-### Multiple Assignments
-```jatti
-chal_oye x, y ban 5, 10
-chal_oye a, b, c ban 1, 2, 3
-```
-
----
-
-## Standard Library
-
-### Importing Python Libraries
-```jatti
-python_le_aa "math" thon sqrt, sin, cos, pi
-chal_oye root ban sqrt(16)         # 4.0
-
-python_le_aa "random" thon randint
-chal_oye dice ban randint(1, 6)
-```
-
-### Common Imports
-```jatti
-# Math library
-python_le_aa "math" thon sqrt, floor, ceil, pi, sin, cos, tan
-
-# Random library
-python_le_aa "random" thon randint, random, choice
-
-# Time library
-python_le_aa "time" thon time, sleep
-
-# Operating system
-python_le_aa "os" thon getcwd, listdir, mkdir
-```
-
 ---
 
 ## CLI Tools
@@ -546,21 +460,6 @@ python_le_aa "os" thon getcwd, listdir, mkdir
 Execute a Jatti program:
 ```bash
 jatti run program.jatti
-jatti run program.jatti --debug    # With debug trace
-```
-
-### jatti build
-Compile to Python:
-```bash
-jatti build program.jatti          # Creates program.py
-jatti build program.jatti -o out.py
-```
-
-### jatti format
-Format code:
-```bash
-jatti format program.jatti         # Display formatted code
-jatti format program.jatti -i      # Format in-place
 ```
 
 ---
@@ -587,7 +486,6 @@ jatti format program.jatti -i      # Format in-place
 | `pakad` | catch | Catch exception |
 | `throw` | raise/throw | Raise exception |
 | `global` | global | Access global variable |
-| `lambda` | lambda | Lambda function |
 | `sach` | sach | Boolean sach |
 | `khaali` | jhoot/empty | Boolean jhoot |
 
@@ -611,7 +509,7 @@ jatti format program.jatti -i      # Format in-place
 | `<=` | Less or equal | `5 <= 5` → sach |
 | `>=` | Greater or equal | `5 >= 3` → sach |
 | `and` / `ate` | Logical AND | `sach ate sach` → sach |
-| `or` / `hor` | Logical OR | `sach hor khaali` → sach |
+| `or` / `ya_te` | Logical OR | `sach ya_te khaali` → sach |
 | `not` / `nahi` | Logical NOT | `nahi sach` → khaali |
 
 ---
@@ -652,7 +550,7 @@ Line 7: chal_oye result ban 10 / 0
 
 ### v0.3.0
 - ✅ Advanced operators (%, **)
-- ✅ Dictionary/Tuple/Range support
+- ✅ Dictionary/Range support
 - ✅ List/Dict comprehensions
 - ✅ Global keyword
 
@@ -678,7 +576,6 @@ Jatti is a complete, production-ready programming language with:
 ✅ Dynamic typing with type coercion  
 ✅ Comprehensive built-in functions  
 ✅ Exception handling and debugging  
-✅ Python library compatibility  
 ✅ Professional CLI tooling  
 ✅ Detailed error messages  
 

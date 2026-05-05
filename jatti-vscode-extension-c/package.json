@@ -1,0 +1,114 @@
+{
+  "name": "jatti-ext",
+  "displayName": "Jatti Punjabi Language Support by AngadSingh31",
+  "description": "Jatti language support: syntax highlighting, snippets, indentation, run button, and bundled runtime.",
+  "icon": "images/logo.png",
+  "version": "0.4.0",
+  "publisher": "AngadSingh31",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "punjabi",
+    "language",
+    "compiler",
+    "jatti"
+  ],
+  "author": "Angad Singh","main": "./out/extension.js",
+  "files": [
+    "out/**",
+    "syntaxes/**",
+    "snippets/**",
+    "language-configuration.json",
+    "images/**",
+    "runtime/**",
+    "README.md",
+    "package.json"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "jatti",
+        "aliases": [
+          "Jatti",
+          "jatti"
+        ],
+        "extensions": [
+          ".jatti"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./images/logo.png",
+          "dark": "./images/logo.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "jatti",
+        "scopeName": "source.jatti",
+        "path": "./syntaxes/jatti.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "jatti",
+        "path": "./snippets/jatti.code-snippets"
+      }
+    ],
+    "commands": [
+      {
+        "command": "jatti.runFile",
+        "title": "Jatti: Run Current File",
+        "icon": "$(play)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "jatti.runFile",
+        "key": "ctrl+alt+r",
+        "when": "editorLangId == jatti"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "jatti.runFile",
+          "when": "resourceExtname == .jatti",
+          "group": "navigation@1"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "jatti.runFile",
+          "when": "editorLangId == jatti"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Jatti",
+      "properties": {
+        "jatti.runtimePath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional full path to jatti executable. If empty, extension uses bundled runtime."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.3",
+    "@vscode/vsce": "^2.26.1"
+  }
+}

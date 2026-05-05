@@ -1,0 +1,136 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Jatti",
+  "scopeName": "source.jatti",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#keywords" },
+    { "include": "#booleans" },
+    { "include": "#operators" },
+    { "include": "#functionDef" },
+    { "include": "#functionCall" },
+    { "include": "#variables" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.jatti",
+          "match": "#.*$"
+        },
+        {
+          "name": "comment.line.fuddu-chiz.jatti",
+          "match": "\\bfuddu_chiz\\b.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.jatti",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            { "name": "constant.character.escape.jatti", "match": "\\\\." }
+          ]
+        },
+        {
+          "name": "string.quoted.single.jatti",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            { "name": "constant.character.escape.jatti", "match": "\\\\." }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.jatti",
+          "match": "\\b\\d+(?:\\.\\d+)?\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.jatti",
+          "match": "\\b(sun_we|ja_we|je|nahin_taan_je|nahin_taan|jadon_tak|har_ek|roko_oye_roko|chalo_oye_chalo|chal_koshish_karle|pakad|wapas_kar)\\b"
+        },
+        {
+          "name": "storage.type.function.jatti",
+          "match": "\\bkaam\\b"
+        },
+        {
+          "name": "keyword.other.assignment.jatti",
+          "match": "\\b(chal_oye|ban)\\b"
+        },
+        {
+          "name": "support.function.builtin.jatti",
+          "match": "\\b(chilla_we|range_banao|kinna_lamba|kism|likh|padh|ganao|sab_ton_vaddha|sab_ton_chhota|sorted|reversed|vada_likha|chhota_likha|saf_karo|vand_karo|badal_de|shuru_hunda|khatam_hunda|dhundh_ja)\\b"
+        }
+      ]
+    },
+    "booleans": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.jatti",
+          "match": "\\b(sach|jhoot)\\b"
+        },
+        {
+          "name": "constant.language.null.jatti",
+          "match": "\\bkhaali\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.logical.jatti",
+          "match": "\\b(ate|ya_te|nahi|te)\\b"
+        },
+        {
+          "name": "keyword.operator.comparison.jatti",
+          "match": "\\b(vadha_hai|nikka_hai|barabar|barabar_nahi_hai|vadha_ya_barabar|nikka_ya_barabar)\\b"
+        },
+        {
+          "name": "keyword.operator.arithmetic.jatti",
+          "match": "[+\\-*/%]"
+        }
+      ]
+    },
+    "functionDef": {
+      "patterns": [
+        {
+          "match": "\\b(kaam)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "storage.type.function.jatti" },
+            "2": { "name": "entity.name.function.jatti" }
+          }
+        }
+      ]
+    },
+    "functionCall": {
+      "patterns": [
+        {
+          "name": "meta.function-call.jatti",
+          "match": "\\b([A-Za-z_][A-Za-z0-9_]*)\\s*(?=\\()",
+          "captures": {
+            "1": { "name": "entity.name.function.call.jatti" }
+          }
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.jatti",
+          "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b"
+        }
+      ]
+    }
+  }
+}

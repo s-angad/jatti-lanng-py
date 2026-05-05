@@ -1,21 +1,101 @@
-# Jatti Language
+# 🚀 Jatti Language
 
-Jatti is a Punjabi-inspired programming language with a C-based compiler + bytecode VM and a VS Code extension.
+**A Modern Programming Language Inspired by Punjabi**
 
-## Important docs
+```
+     ██  █████  ████████ ████████ ██   ██ 
+     ██ ██   ██    ██       ██    ██   ██
+     ██ ███████    ██       ██    ██   ██
+██   ██ ██   ██    ██       ██    ██  
+ █████  ██   ██    ██       ██    ██   ██
+```
 
-- Local setup (Windows): [LOCAL_SETUP.md](./LOCAL_SETUP.md)
-- Language basics (variables/operators/loops): [LANGUAGE_BASICS.md](./LANGUAGE_BASICS.md)
+**Version:** 0.4.0  
+**Status:** Production Ready ✅  
+**License:** MIT  
+**Author:** Mr. Angad Singh
 
-Reference docs:
+---
 
-- Beginner tutorial: [BEGINNER_TUTORIAL.md](./BEGINNER_TUTORIAL.md)
-- Intermediate guide: [INTERMEDIATE_GUIDE.md](./INTERMEDIATE_GUIDE.md)
-- Language specification: [LANGUAGE_SPECIFICATION.md](./LANGUAGE_SPECIFICATION.md)
+## 📋 Table of Contents
 
-## Quick start
+1. [About Jatti](#about-jatti)
+2. [Features](#features)
+3. [Quick Start](#quick-start)
+4. [Syntax Reference](#syntax-reference)
+5. [Data Types](#data-types)
+6. [Keywords](#keywords)
+7. [Operations](#operations)
+8. [Control Flow](#control-flow)
+9. [Functions](#functions)
+10. [Collections](#collections)
+11. [Built-in Functions](#built-in-functions)
+12. [String Methods](#string-methods)
+13. [Error Handling](#error-handling)
+14. [Examples](#examples)
+15. [Installation](#installation)
+16. [VS Code Extension](#vs-code-extension)
+17. [Documentation](#documentation)
 
-Create `hello.jatti`:
+---
+
+## 🎯 About Jatti
+
+Created by **Mr. Angad Singh** to make programming accessible and fun!
+
+### Why Jatti?
+
+✨ **Easy to Learn** - Clear, readable syntax  
+✨ **Fun Syntax** - Punjabi keywords make coding enjoyable  
+✨ **Powerful** - Full functional and procedural support  
+✨ **Fast** - Compiled bytecode execution via C VM  
+
+---
+
+## ✨ Features
+
+### Core Features
+- ✅ **Interpreted Language** - Run code directly via C VM
+- ✅ **Dynamic Typing** - Types determined at runtime
+- ✅ **Functions** - First-class functions with recursion
+- ✅ **Collections** - Lists and dictionaries
+- ✅ **String Support** - Full string operations and methods
+- ✅ **Exception Handling** - `chal_koshish_karle` / `pakad` blocks
+- ✅ **File I/O** - Read and write files
+- ✅ **Loops & Conditionals** - Full control flow
+
+### Advanced Features
+- ✅ **Recursion** - Full support for recursive functions
+- ✅ **List Operations** - Append, indexing, iteration
+- ✅ **String Methods** - 8 Punjabi string methods (vada_likha, chhota_likha, vand_karo, etc.)
+- ✅ **Built-in Functions** - 8 utility functions plus 2 Punjabi aliases
+- ✅ **Math Operations** - Complete arithmetic including power operator (**)
+- ✅ **Debugging** - Clear error messages with cultural roasts
+
+### IDE Support
+- ✅ **VS Code Extension** - Full editor integration
+- ✅ **Syntax Highlighting** - Color-coded syntax
+- ✅ **Run Button** - One-click execution
+- ✅ **Output Panel** - Dedicated output pane
+- ✅ **Error Messages** - Clear error reporting with roasts
+
+---
+
+## 🚀 Quick Start
+
+### Install Jatti
+
+```powershell
+# From repository root, use:
+jatti run yourfile.jatti
+
+# Or fallback:
+.\jatti.cmd run yourfile.jatti
+```
+
+### Your First Program
+
+**File: `hello.jatti`**
 
 ```jatti
 sun_we
@@ -23,76 +103,88 @@ sun_we
 ja_we
 ```
 
-
-Run (no build needed!):
-
-```powershell
-.\jatti.cmd run hello.jatti
-```
-
-## C compiler/VM (no Python)
-
-This repo also includes an **MVP C-based compiler + bytecode VM** in `c/`.
-
-
-No build required! The VM is prebuilt.
-
-Run any .jatti file:
+**Run it:**
 
 ```powershell
-.\jatti.cmd run path\to\program.jatti
+jatti run hello.jatti
 ```
 
-## VS Code extension (run via C VM)
+**Output:**
 
-There is a publishable VS Code extension scaffold in `jatti-vscode-extension-c/`.
-
-What it does:
-
-- Adds a command: **Jatti: Run Current File (C VM)**
-- Runs the active `.jatti` file using the repo-local `jatti.cmd` wrapper (which calls `c\bin\jatti.exe`)
-
-
-Prerequisites:
-
-1. Open the repo root folder in VS Code (so `jatti.cmd` is in the workspace root)
-
-Build a `.vsix` package:
-
-```powershell
-cd jatti-vscode-extension-c
-npm install
-npm run package
+```
+Hello Jatti!
 ```
 
-Install the `.vsix` in VS Code:
+---
 
-- Open the Extensions view
-- Click the `...` menu
-- **Install from VSIX...**
+## 📝 Syntax Reference
 
-Use it:
+### Program Structure
 
-- Open any `.jatti` file
-- Press `Ctrl+Shift+P`
-- Run: **Jatti: Run Current File (C VM)**
+Every Jatti program must have this structure:
 
-## Auth note (current default)
+```jatti
+sun_we
+    fuddu_chiz Your code here
+ja_we
+```
 
-API-key auth is **disabled by default**.
+**Translation:**
+- `sun_we` = "Listen"  (Start main block)
+- `ja_we` = "Go" (End main block)
+- `fuddu_chiz` = Comment
 
-- To keep it open: leave `JATTI_REQUIRE_API_KEY` unset (or set it to `0`)
-- To enable later: set `JATTI_REQUIRE_API_KEY=1` and `JATTI_API_KEY=<secret>`
+### Comments
 
-For variables/operators and core syntax, see [LANGUAGE_BASICS.md](./LANGUAGE_BASICS.md).
+```jatti
+fuddu_chiz This is a comment
+fuddu_chiz Use fuddu_chiz to add notes
+```
 
-## Language notes (current)
+---
 
-- Comments: both `#` and `fuddu_chiz` are supported.
-- Logical operators: `ate` (AND), `ya_te` (OR), `nahi` (NOT).
-- Strings: both single quotes `'...'` and double quotes `"..."` work.
+## 🔤 Data Types
 
-<!--
+### Strings
+```jatti
+chal_oye greeting ban "Hello"
+chal_oye name ban "World"
+chilla_we greeting
+```
+
+### Numbers (Integer & Float)
+```jatti
+chal_oye age ban 25
+chal_oye height ban 5.9
+chal_oye pi ban 3.14159
+```
+
+### Boolean
+```jatti
+chal_oye isTrue ban sach
+chal_oye isFalse ban jhoot
+```
+
+### Lists
+```jatti
+chal_oye fruits ban ["apple", "banana", "mango"]
+chal_oye numbers ban [1, 2, 3, 4, 5]
+chal_oye mixed ban [1, "text", 3.14, sach]
+```
+
+### Dictionaries
+```jatti
+chal_oye person ban {
+    "name": "Singh",
+    "age": 25,
+    "city": "Punjab"
+}
+```
+
+### Khaali (None)
+```jatti
+chal_oye empty ban khaali
+```
 
 ---
 
@@ -126,50 +218,9 @@ For variables/operators and core syntax, see [LANGUAGE_BASICS.md](./LANGUAGE_BAS
 | `sach` | Truth | Boolean true |
 | `jhoot` | Lie | Boolean false |
 | `khaali` | Empty | Null/None value |
-
----
-
-## ⚠️ Special Conditions & Requirements
-
-**IMPORTANT:** These conditions must be followed for code to work correctly:
-
-### 1. **Program Structure (REQUIRED)**
-- Every Jatti program MUST start with `sun_we` and end with `ja_we`
-- `sun_we` must be at line 1 (no blank lines before it)
-- `ja_we` must be the last line
-- All code must be indented inside the `sun_we...ja_we` block
-
-### 2. **Functions (REQUIRED)**
-- Functions MUST have a `wapas_kar` (return) statement - this is **NOT optional**
-- Functions must be defined inside the `sun_we...ja_we` block
-- Function calls MUST be in an assignment context: `chal_oye result ban function_name()`
-- Or in a print context: `chilla_we function_name()`
-
-### 3. **Control Flow Blocks**
-- `if...else` blocks use indentation (Python-style), NO closing keyword
-- Multiple conditions: use `nahin_taan_je` for "else if", then `nahin_taan` for final "else"
-- Example:
-  ```jatti
-  je condition1
-      fuddu_chiz do something
-  nahin_taan_je condition2
-      fuddu_chiz do something else
-  nahin_taan
-      fuddu_chiz default case
-  ```
-
-### 4. **Loops**
-- `har_ek` (for loop): Syntax is `har_ek variable iterable`
-- `jadon_tak` (while loop): Condition must follow the keyword
-- `roko_oye_roko` (break): Can only be used inside loops
-- `chalo_oye_chalo` (continue): Can only be used inside loops
-- Loop variables can be used in `chilla_we` but not in assignments (use temp variables instead)
-
-### 5. **Expressions & Function Calls**
-- User-defined function calls must be in assignment context: `chal_oye result ban function()`
-- Nested function calls (e.g., `range_banao(kinna_lamba(list))`) are not supported - assign to a variable first
-- String concatenation with `te` only works in `chilla_we` statements, not in assignments
-- Use `+` for arithmetic, `te` for string output in print statements
+| `ate` | And | AND operator |
+| `ya_te` | Or | OR operator |
+| `nahi` | Not | NOT operator |
 
 ---
 
@@ -196,9 +247,9 @@ ja_we
 sun_we
     chal_oye x ban 5
     
-    chilla_we x vadha_hai 3     fuddu_chiz sach
-    chilla_we x nikka_hai 10      fuddu_chiz sach
-    chilla_we x barabar 5       fuddu_chiz sach
+    chilla_we x vadha_hai 3           fuddu_chiz sach
+    chilla_we x nikka_hai 10          fuddu_chiz sach
+    chilla_we x barabar 5             fuddu_chiz sach
 ja_we
 ```
 
@@ -209,7 +260,7 @@ sun_we
     chal_oye a ban sach
     chal_oye b ban jhoot
     
-    je a te b                   fuddu_chiz AND operator
+    je a ate b                   fuddu_chiz AND operator
         chilla_we "Both sach"
 ja_we
 ```
@@ -240,7 +291,7 @@ sun_we
 ja_we
 ```
 
-Output:
+**Output:**
 ```
 1
 2
@@ -277,8 +328,6 @@ ja_we
 ## 🔧 Functions
 
 ### Define Function
-
-**Important:** Functions MUST be inside the `sun_we...ja_we` block and MUST have a `wapas_kar` (return) statement!
 
 ```jatti
 sun_we
@@ -348,36 +397,105 @@ sun_we
 ja_we
 ```
 
-### List Operations
-
-```jatti
-sun_we
-    chal_oye list ban [1, 2, 3]
-    
-    fuddu_chiz Add element
-    chal_oye list ban list te [4]
-    
-    fuddu_chiz fuddu_chizove element
-    fuddu_chiz (use slicing or built-in functions)
-ja_we
-```
-
 ---
 
 ## 🎁 Built-in Functions
 
 | Function | Purpose | Example |
 |----------|---------|---------|
-| `range_banao(n)`| Create range | `range_banao(5)` → 0,1,2,3,4 |
+| `range_banao(n)` | Create range | `range_banao(5)` → 0,1,2,3,4 |
 | `kinna_lamba()` | Length | `kinna_lamba([1,2,3])` → 3 |
-| `kism()` | Type | `kism(5)` → int |
-| `likh()` | Write to file | `likh("file.txt", "text")` |
+| `kism()` | Type | `kism(5)` → number |
+| `likh()` | Write file | `likh("file.txt", "text")` |
 | `padh()` | Read file | `padh("file.txt")` |
 | `ganao()` | Sum | `ganao([1,2,3])` → 6 |
 | `sab_ton_vaddha()` | Max | `sab_ton_vaddha([1,5,3])` → 5 |
 | `sab_ton_chhota()` | Min | `sab_ton_chhota([1,5,3])` → 1 |
 | `sorted()` | Sort | `sorted([3,1,2])` → [1,2,3] |
 | `reversed()` | Reverse | `reversed([1,2,3])` → [3,2,1] |
+
+---
+
+## 🔤 String Methods
+
+Jatti provides powerful string manipulation functions:
+
+| Method | Purpose | Example |
+|--------|---------|---------|
+| `vada_likha(str)` | Uppercase | `vada_likha("hello")` → "HELLO" |
+| `chhota_likha(str)` | Lowercase | `chhota_likha("HELLO")` → "hello" |
+| `saf_karo(str)` | Trim spaces | `saf_karo("  text  ")` → "text" |
+| `vand_karo(str, delim)` | Split string | `vand_karo("a,b,c", ",")` → ["a", "b", "c"] |
+| `badal_de(str, old, new)` | Replace | `badal_de("hello", "l", "L")` → "heLLo" |
+| `shuru_hunda(str, prefix)` | Check start | `shuru_hunda("hello", "he")` → sach |
+| `khatam_hunda(str, suffix)` | Check end | `khatam_hunda("hello", "lo")` → sach |
+| `dhundh_ja(str, substr)` | Find index | `dhundh_ja("hello", "ll")` → 2 |
+
+### String Methods Examples
+
+```jatti
+sun_we
+    chal_oye text ban "Jatti Programming"
+    
+    chilla_we vada_likha(text)          fuddu_chiz JATTI PROGRAMMING
+    chilla_we chhota_likha(text)        fuddu_chiz jatti programming
+    
+    chal_oye words ban vand_karo(text, " ")
+    chilla_we words                     fuddu_chiz ["Jatti", "Programming"]
+    
+    je shuru_hunda(text, "Jatti")
+        chilla_we "Shuru hunda Jatti naal"
+    
+    chal_oye position ban dhundh_ja(text, "a")
+    chilla_we position                 fuddu_chiz 1
+    
+    chal_oye replaced ban badal_de(text, "Jatti", "JATTI")
+    chilla_we replaced                 fuddu_chiz JATTI Programming
+    
+    je khatam_hunda(text, "ing")
+        chilla_we "Khatam hunda ing naal"
+ja_we
+```
+
+---
+
+## ❌ Error Handling
+
+### Try-Catch Blocks
+
+```jatti
+sun_we
+    chal_koshish_karle
+        chal_oye result ban 10 / 0
+    pakad err
+        chilla_we "Error caught: " + err
+ja_we
+```
+
+### Error Output With Roasts
+
+Jatti shows a random Punjabi roast first, then the error:
+
+```text
+🔥 Roast: Syntax nu respect de.
+❌ JATTI ERROR
+🔴 Error: Program must start with sun_we.
+📍 Line 1
+```
+
+### Available Roasts
+
+- "Galti ho gayi !! koi gall nahi."
+- "Dhyaan de, Jatti style rakhi !!"
+- "Phir ohi mistake !!"
+- "Tu compiler nu test kar reha !!"
+- "Compiler thak gaya. Tu vi !!"
+- "Tu coding chadd de !!"
+- "Tere to nhi hona oye !!"
+- "Eh ki likh ta tu?"
+- "Dimag use kar le thoda."
+- "Jatti Lang mazak nahi hai."
+- "Syntax nu respect de."
 
 ---
 
@@ -399,75 +517,91 @@ sun_we
     
     chal_oye result1 ban calculate(10, "+", 5)
     chilla_we result1
-    
-    chal_oye result2 ban calculate(10, "-", 3)
-    chilla_we result2
-    
-    chal_oye result3 ban calculate(10, "*", 2)
-    chilla_we result3
 ja_we
 ```
 
-### Example 2: Fibonacci Sequence
+### Example 2: String Processing
 
 ```jatti
 sun_we
-    fuddu_chiz Generate first 10 Fibonacci numbers
-    chal_oye fib ban [0, 1]
-    chal_oye count ban 0
+    chal_oye sentence ban "Jatti is amazing"
     
-    jadon_tak count nikka_hai 8
-        chal_oye next ban fib[kinna_lamba(fib) - 2] + fib[kinna_lamba(fib) - 1]
-        chal_oye fib ban fib te [next]
-        chal_oye count ban count + 1
+    chal_oye upper_text ban vada_likha(sentence)
+    chilla_we upper_text
     
-    fuddu_chiz Print sequence
-    har_ek num fib
-        chilla_we num
+    chal_oye words ban vand_karo(sentence, " ")
+    chal_oye word_count ban kinna_lamba(words)
+    chilla_we word_count
 ja_we
 ```
 
-### Example 3: Todo List
+### Example 3: File Operations
 
 ```jatti
 sun_we
-    chal_oye todos ban ["Code", "Test", "Deploy"]
+    likh("output.txt", "Hello from Jatti!")
     
-    chilla_we "Todos:"
-    chal_oye count ban kinna_lamba(todos)
-    chal_oye index ban 0
-    
-    jadon_tak index nikka_hai count
-        chal_oye num ban index + 1
-        chilla_we num
-        chilla_we todos[index]
-        chal_oye index ban index + 1
+    chal_oye content ban padh("output.txt")
+    chilla_we content
 ja_we
 ```
 
 ---
 
-## 📥 Installation
+## 🎨 Installation
 
-### Requirements
-- Windows 10/11
-- MSVC Build Tools (for building the C VM)
-
-### Setup
-
-1. Build the C VM: see **C compiler/VM (no Python)** above
-2. Run programs with:
+### Windows
 
 ```powershell
-.\jatti.cmd run program.jatti
+# Clone repository
+git clone https://github.com/yourrepo/jatti-lang.git
+
+# Navigate to directory
+cd jatti-lang
+
+# Run a file
+jatti run yourfile.jatti
 ```
+
+See [LOCAL_SETUP.md](./LOCAL_SETUP.md) for detailed setup.
+
+---
+
+## 🎨 VS Code Extension
+
+### Features
+- ✅ Syntax highlighting
+- ✅ Run button (▶️)
+- ✅ Keyboard shortcuts (Ctrl+Alt+R)
+- ✅ Dedicated output panel
+- ✅ Error reporting
+- ✅ Marketplace icon
+
+### Usage
+1. Create `hello.jatti`
+2. Click ▶️ button or press Ctrl+Alt+R
+3. See output in **Jatti** output panel
+
+---
+
+## 📚 Documentation
+
+Complete documentation available:
+
+- **[Language Specification](./LANGUAGE_SPECIFICATION.md)** - Complete reference
+- **[Beginner Tutorial](./BEGINNER_TUTORIAL.md)** - Start here!
+- **[Intermediate Guide](./INTERMEDIATE_GUIDE.md)** - Advanced techniques
+- **[Advanced Topics](./ADVANCED_TOPICS.md)** - Best practices
+- **[Language Basics](./LANGUAGE_BASICS.md)** - Variables/operators/loops
+
+---
 
 ## 🎓 Learning Path
 
 **Beginner:**
 1. Read: [Beginner Tutorial](./BEGINNER_TUTORIAL.md)
-2. chal_koshish_karle: `hello.jatti` example
-3. Practice: Create simple programs
+2. Try: `hello.jatti` example
+3. Practice: Simple programs
 
 **Intermediate:**
 1. Read: [Intermediate Guide](./INTERMEDIATE_GUIDE.md)
@@ -484,13 +618,25 @@ ja_we
 ## 📊 Language Stats
 
 - **Version:** 0.4.0
-- **Lines of Code:** 2000+
-- **Keywords:** 20+
-- **Built-in Functions:** 20+
-- **Examples:** 50+
-- **Documentation:** 1400+ lines
+- **Lines of Code:** 3500+
+- **Keywords:** 27
+- **Built-in Functions:** 8 (plus 2 Punjabi aliases)
+- **String Methods:** 8 Punjabi methods
+- **Total Functions:** 16 + 2 aliases = 18
+- **Examples:** 60+
+- **Documentation:** 1700+ lines
 
 ---
+
+## 🤝 Contributing
+
+Contributions welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
 ---
 
@@ -502,11 +648,11 @@ MIT License - See [LICENSE](./LICENSE) file
 
 ## 👤 Author
 
-**Mr. angad Singh**
+**Mr. Singh / Mr. Angad Singh**
 
 - Created: January 2025
 - Language: Jatti
-- Inspiration: Punjabi culture
+- Inspiration: Punjabi culture, Python simplicity
 
 ---
 
@@ -514,20 +660,30 @@ MIT License - See [LICENSE](./LICENSE) file
 
 Thanks to:
 - Punjabi language speakers
+- Python community for inspiration
 - All contributors and users
 
 ---
 
-## � Version History
+## 📞 Support
+
+- 📧 Email: jatti-lang@example.com
+- 🐛 Issues: GitHub Issues
+- 💬 Discussions: GitHub Discussions
+
+---
+
+## 📜 Version History
 
 ### v0.4.0 (Current - Production Ready) ✅
-**Major Bug Fixes & Improvements:**
-- ✅ Full recursive function support (fixed infinite loop issues)
-- ✅ Safe string handling (operators in strings no longer cause errors)
-- ✅ All 6 comparison operators implemented: `>`, `<`, `==`, `!=`, `>=`, `<=`
-- ✅ Complete documentation audit and fixes
+- ✅ Full recursive function support
+- ✅ String methods API with Punjabi names (vada_likha, chhota_likha, vand_karo, badal_de, saf_karo, shuru_hunda, khatam_hunda, dhundh_ja)
+- ✅ Safe string handling
+- ✅ All comparison operators
+- ✅ Punjabi roast error messages with exception types
+- ✅ VS Code output panel integration
+- ✅ Try-catch exception handling
 - ✅ Comprehensive test coverage
-- ✅ Performance optimizations
 
 ### v0.3.0
 - Basic language features
@@ -537,27 +693,4 @@ Thanks to:
 
 ---
 
-## �🚀 Future Roadmap
-
-- [ ] Jatti 0.5.0 - Object-oriented features
-- [ ] Jatti 0.6.0 - Package manager
-- [ ] Jatti 1.0 - Stable release
-- [ ] Online playground
-- [ ] Mobile support
-
----
-
-## 🎉 Get Started Now!
-
-```bash
-cd jatti-lang
-jatti run example.jatti
-```
-
-**Happy Coding with Jatti! ਜੱਟੀ 🚀**
-
----
-
-**Made with ❤️ for the Punjabi tech community**
-
--->
+**Happy Coding! 🎉 - Jatti Lang Team**

@@ -1,0 +1,108 @@
+{
+  "Program Skeleton": {
+    "prefix": "main",
+    "body": [
+      "sun_we",
+      "    $0",
+      "ja_we"
+    ],
+    "description": "Jatti program skeleton"
+  },
+  "Print": {
+    "prefix": "phad",
+    "body": [
+      "chilla_we ${1:\"text\"}"
+    ],
+    "description": "Print expression"
+  },
+  "Assignment": {
+    "prefix": "set",
+    "body": [
+      "chal_oye ${1:name} ban ${2:value}"
+    ],
+    "description": "Variable assignment"
+  },
+  "If": {
+    "prefix": "if",
+    "body": [
+      "je ${1:condition}",
+      "    $0"
+    ],
+    "description": "If block"
+  },
+  "If Else": {
+    "prefix": "ifelse",
+    "body": [
+      "je ${1:condition}",
+      "    ${2:chilla_we \"true\"}",
+      "nahin_taan",
+      "    ${3:chilla_we \"false\"}"
+    ],
+    "description": "If else block"
+  },
+  "Else If": {
+    "prefix": "elif",
+    "body": [
+      "nahin_taan_je ${1:condition}",
+      "    $0"
+    ],
+    "description": "Else-if block"
+  },
+  "While": {
+    "prefix": "while",
+    "body": [
+      "jadon_tak ${1:condition}",
+      "    $0"
+    ],
+    "description": "While loop"
+  },
+  "For Range": {
+    "prefix": "forr",
+    "body": [
+      "har_ek ${1:i} range_banao(${2:1}, ${3:10})",
+      "    $0"
+    ],
+    "description": "For loop with range"
+  },
+  "For Each": {
+    "prefix": "foreach",
+    "body": [
+      "har_ek ${1:item} ${2:items}",
+      "    $0"
+    ],
+    "description": "For-each loop"
+  },
+  "Function": {
+    "prefix": "fn",
+    "body": [
+      "kaam ${1:name}(${2:param})",
+      "    $0",
+      "    wapas_kar ${3:khaali}"
+    ],
+    "description": "Function definition"
+  },
+  "Try Catch": {
+    "prefix": "try",
+    "body": [
+      "chal_koshish_karle",
+      "    $1",
+      "pakad ${2:err}",
+      "    $0"
+    ],
+    "description": "Try-catch block"
+  },
+  "List": {
+    "prefix": "list",
+    "body": [
+      "[${1:1}, ${2:2}, ${3:3}]"
+    ],
+    "description": "List literal"
+  },
+  "Dictionary": {
+    "prefix": "dict",
+    "body": [
+      "{\"${1:key}\": ${2:value}}"
+    ],
+    "description": "Dictionary literal"
+  }
+}

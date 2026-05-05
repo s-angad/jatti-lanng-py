@@ -67,10 +67,10 @@ Singh
 ```jatti
 sun_we
     chal_oye x ban 10
-    chilla_we x         # Output: 10
+    chilla_we x         fuddu_chiz Output: 10
     
     chal_oye x ban 20
-    chilla_we x         # Output: 20
+    chilla_we x         fuddu_chiz Output: 20
 ja_we
 ```
 
@@ -78,8 +78,8 @@ ja_we
 
 ```jatti
 sun_we
-    # This is a comment
-    chal_oye name ban "Singh"  # Comments can go here too
+    fuddu_chiz This is a comment
+    chal_oye name ban "Singh"  fuddu_chiz can go here too
     chilla_we name
 ja_we
 ```
@@ -93,10 +93,10 @@ sun_we
     chal_oye a ban 10
     chal_oye b ban 5
     
-    chilla_we a + b     # Output: 15 (addition)
-    chilla_we a - b     # Output: 5 (subtraction)
-    chilla_we a * b     # Output: 50 (multiplication)
-    chilla_we a / b     # Output: 2 (division)
+    chilla_we a + b     fuddu_chiz Output: 15 (addition)
+    chilla_we a - b     fuddu_chiz Output: 5 (subtraction)
+    chilla_we a * b     fuddu_chiz Output: 50 (multiplication)
+    chilla_we a / b     fuddu_chiz Output: 2 (division)
 ja_we
 ```
 
@@ -112,8 +112,8 @@ ja_we
 
 ```jatti
 sun_we
-    chilla_we 10 % 3    # Output: 1 (fuddu_chizainder)
-    chilla_we 2 ** 3    # Output: 8 (power)
+    chilla_we 10 % 3    fuddu_chiz Output: 1 (remainder)
+    chilla_we 2 ** 3    fuddu_chiz Output: 8 (power)
 ja_we
 ```
 
@@ -150,15 +150,15 @@ Too young to vote
 sun_we
     chal_oye score ban 85
     
-    # > greater than
+    fuddu_chiz > greater than
     je score vadha_hai 90
         chilla_we "Great!"
     
-    # < less than
+    fuddu_chiz < less than
     je score nikka_hai 50
         chilla_we "Need to improve"
     
-    # == equal
+    fuddu_chiz == equal
     je score barabar 85
         chilla_we "Perfect score!"
 ja_we
@@ -179,7 +179,7 @@ ja_we
 
 **Explanation:**
 - `ate` = "and"
-- `hor` = "or"
+- `ya_te` = "or"
 - `nahi` = "not"
 
 ---
@@ -219,7 +219,7 @@ sun_we
     
     jadon_tak i nikka_hai 10
         je i barabar 5
-            roko_oye_roko          # Exit the loop
+            roko_oye_roko          fuddu_chiz Exit the loop
         chilla_we i
         chal_oye i ban i + 1
 ja_we
@@ -258,13 +258,13 @@ Cherry
 
 **Explanation:**
 - `har_ek` = "for each"
-- Works with lists, tuples, dictionaries, ranges
+- Works with lists, dictionaries, ranges
 
-### Using range()
+### Using range_banao
 
 ```jatti
 sun_we
-    har_ek i range(1, 6)
+    har_ek i range_banao(1, 6)
         chilla_we i
 ja_we
 ```
@@ -288,10 +288,10 @@ Store multiple values:
 sun_we
     chal_oye numbers ban [10, 20, 30, 40, 50]
     
-    # Access by index
-    chilla_we numbers[0]   # Output: 10
-    chilla_we numbers[2]   # Output: 30
-    chilla_we numbers[-1]  # Output: 50 (last element)
+    fuddu_chiz Access by index
+    chilla_we numbers[0]   fuddu_chiz Output: 10
+    chilla_we numbers[2]   fuddu_chiz Output: 30
+    chilla_we numbers[-1]  fuddu_chiz Output: 50 (last element)
 ja_we
 ```
 
@@ -302,17 +302,13 @@ ja_we
      -5  -4  -3  -2  -1    (backward)
 ```
 
-### Modifying Lists
+### List Length
 
 ```jatti
 sun_we
     chal_oye nums ban [1, 2, 3]
     
-    nums.append(4)         # Add 4 → [1, 2, 3, 4]
-    nums.insert(1, 99)     # Insert 99 at index 1 → [1, 99, 2, 3, 4]
-    nums.fuddu_chizove(99)        # fuddu_chizove 99 → [1, 2, 3, 4]
-    
-    chilla_we nums
+    chilla_we kinna_lamba(nums)    fuddu_chiz Output: 3
 ja_we
 ```
 
@@ -348,22 +344,29 @@ ja_we
 sun_we
     chal_oye text ban "Hello World"
     
-    chilla_we text.upper_case_oye()        # HELLO WORLD
-    chilla_we text.lower_case_oye()        # hello world
-    chilla_we text.tut_ja_oye(" ")         # ["Hello", "World"]
-    chilla_we text.badal_ja_oye("World", "Jatti")  # Hello Jatti
+    chilla_we vada_likha(text)        fuddu_chiz HELLO WORLD
+    chilla_we chhota_likha(text)      fuddu_chiz hello world
+    chilla_we vand_karo(text, " ")    fuddu_chiz ["Hello", "World"]
+    chilla_we badal_de(text, "World", "Jatti")  fuddu_chiz Hello Jatti
 ja_we
 ```
 
 ### String Concatenation
+
+Use the `+` operator to combine strings:
 
 ```jatti
 sun_we
     chal_oye first_name ban "Singh"
     chal_oye last_name ban "Kumar"
     
-    chilla_we first_name hor " " hor last_name  # Output: Singh Kumar
+    chilla_we first_name + " " + last_name
 ja_we
+```
+
+**Output:**
+```
+Singh Kumar
 ```
 
 ---
@@ -374,7 +377,7 @@ Reusable blocks of code:
 
 ```jatti
 kaam greet(name)
-    chilla_we "Hello, " hor name
+    chilla_we "Hello, " + name
 ja_we
 
 sun_we
@@ -417,12 +420,12 @@ ja_we
 
 ```jatti
 kaam greet(name, greeting="Hi")
-    chilla_we greeting hor ", " hor name
+    chilla_we greeting + ", " + name
 ja_we
 
 sun_we
-    greet("Singh")              # Output: Hi, Singh
-    greet("Singh", "Hello")     # Output: Hello, Singh
+    greet("Singh")              
+    greet("Singh", "Hello")    
 ja_we
 ```
 
@@ -436,10 +439,9 @@ Handle problems gracefully:
 sun_we
     chal_koshish_karle
         chal_oye numbers ban [1, 2, 3]
-        chilla_we numbers[10]   # Error! Index out of range
+        chilla_we numbers[10]   fuddu_chiz Error! Index out of range
     pakad error
-        chilla_we "Error: " hor error
-    ja_we
+        chilla_we "Error: " + error
 ja_we
 ```
 
@@ -457,14 +459,14 @@ Error: list index out of range
 
 ```jatti
 sun_we
-    # Division by zero
+    fuddu_chiz Division by zero
     chal_koshish_karle
         chal_oye x ban 10 / 0
     pakad error
-        chilla_we "Cannot / by zero"
+        chilla_we "Cannot divide by zero"
     ja_we
     
-    # Undefined variable
+    fuddu_chiz Undefined variable
     chal_koshish_karle
         chilla_we undefined_var
     pakad error
@@ -482,28 +484,28 @@ Store data with labels:
 ```jatti
 sun_we
     chal_oye person ban {
-        naam: "Singh",
-        age: 25,
-        city: "Punjab"
+        "naam": "Singh",
+        "age": 25,
+        "city": "Punjab"
     }
     
-    chilla_we person["naam"]      # Output: Singh
-    chilla_we person["age"]       # Output: 25
+    chilla_we person["naam"]      fuddu_chiz Output: Singh
+    chilla_we person["age"]       fuddu_chiz Output: 25
 ja_we
 ```
 
-### Dictionary Operations
+### Dictionary Access
 
 ```jatti
 sun_we
     chal_oye student ban {
-        naam: "Priya",
-        grade: "A"
+        "naam": "Priya",
+        "grade": "A"
     }
     
-    chilla_we kinna_lamba(student)    # Output: 2
-    chilla_we student.get_keys()      # Output: ["naam", "grade"]
-    chilla_we student.get_values()    # Output: ["Priya", "A"]
+    chilla_we kinna_lamba(student)    fuddu_chiz Output: 2
+    chilla_we student["naam"]         fuddu_chiz Output: Priya
+    chilla_we student["grade"]        fuddu_chiz Output: A
 ja_we
 ```
 
@@ -526,16 +528,18 @@ kaam calculate_grade(score)
 ja_we
 
 sun_we
-    chal_oye students ban {
-        singh: 85,
-        priya: 92,
-        raj: 78,
-        neha: 95
-    }
+    chal_oye students ban [
+        ["singh", 85],
+        ["priya", 92],
+        ["raj", 78],
+        ["neha", 95]
+    ]
     
-    har_ek name, score students
+    har_ek record students
+        chal_oye name ban record[0]
+        chal_oye score ban record[1]
         chal_oye grade ban calculate_grade(score)
-        chilla_we name hor ": " hor score hor " (" hor grade hor ")"
+        chilla_we name + ": " + kism(score) + " (" + grade + ")"
 ja_we
 ```
 
@@ -553,7 +557,7 @@ neha: 95 (A)
 
 You now know the basics! chalo_oye_chalo with:
 
-1. **Intermediate Guide** - Learn about comprehensions, lambdas, and advanced features
+1. **Intermediate Guide** - Learn about comprehensions and advanced features
 2. **Advanced Topics** - Explore performance tips, best practices, and debugging
 3. **Example Programs** - See real-world applications
 4. **API Reference** - Complete documentation of all functions and methods
@@ -577,7 +581,7 @@ vadha_hai (>) nikka_hai (<) barabar (==)
 barabar_nahi_hai (!=) vadha_ya_barabar (>=) nikka_ya_barabar (<=)
 
 # Logical
-ate (AND) hor (OR) nahi (NOT)
+ate (AND) ya_te (OR) nahi (NOT)
 
 # Control Flow
 je (if) nahin_taan_je (elif) nahin_taan (else)
@@ -590,7 +594,7 @@ kaam name(params) ... wapas_kar value ja_we
 chal_koshish_karle ... pakad error ... ja_we
 
 # Collections
-[list] {dict} (tuple)
+[list] {dict}
 ```
 
 ---

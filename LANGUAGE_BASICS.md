@@ -126,4 +126,3 @@ ja_we
 
 - Full spec: `LANGUAGE_SPECIFICATION.md`
 - Beginner tutorial: `BEGINNER_TUTORIAL.md`
-- Intermediate guide: `INTERMEDIATE_GUIDE.md`

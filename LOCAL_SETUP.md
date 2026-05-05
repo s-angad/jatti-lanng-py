@@ -1,20 +1,19 @@
 # Local Setup (Windows)
 
 This repo contains:
-- The Jatti interpreter + CLI (`cli.py`)
-- A 2‑pane web playground (`playground_server.py`)
-- A VS Code extension (folder `jatti-lang-vscode/`)
+- The Jatti C compiler + bytecode VM (`c/`)
+- A VS Code extension (publishable scaffold in `jatti-vscode-extension-c/`)
 
 ## Requirements
 
 - Windows 10/11
-- Python 3.10+ recommended (3.8+ usually works)
 - Git (optional, but recommended)
+- Visual Studio 2022 Build Tools (MSVC)
 
 ## 1) Get the code
 
 ```powershell
-git clone https://github.com/shivang-jagwan/Punjabi-Language-Jatti-.git
+git clone https://github.com/s-angad/jatti
 cd Punjabi-Language-Jatti-
 ```
 
@@ -22,11 +21,7 @@ If you already have the folder, just `cd` into it.
 
 ## 2) Create and activate a virtual environment
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python --version
-```
+No setup is required for the C VM.
 
 ## 3) Run a Jatti file (CLI)
 
@@ -41,35 +36,5 @@ ja_we
 Run:
 
 ```powershell
-python cli.py run hello.jatti
+   jatti run hello.jatti
 ```
-
-## 4) Build Jatti → Python
-
-```powershell
-python cli.py build hello.jatti --out hello.py
-python hello.py
-```
-
-## 5) Run the web playground (no CLI commands needed)
-
-```powershell
-python playground_server.py
-```
-
-Open:
-- http://127.0.0.1:8000/
-
-## 6) Run regression tests
-
-```powershell
-python tests/run_regressions.py
-python tests/run_regressions.py --build
-```
-
-## Troubleshooting
-
-- PowerShell blocks activation:
-  - Run PowerShell as Admin once: `Set-ExecutionPolicy RemoteSigned`
-- Port 8000 already used:
-  - `python playground_server.py --port 9000`
