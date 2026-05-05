@@ -133,7 +133,6 @@ chal_oye person ban {
 
 # Access by key
 chilla_we person["naam"]         # Output: Singh
-chilla_we person.get("country")  # Output: None (if key doesn't exist)
 ```
 
 ## Operators
@@ -144,7 +143,7 @@ chal_oye sum ban 10 + 5        # 15
 chal_oye diff ban 10 - 5       # 5
 chal_oye product ban 10 * 5    # 50
 chal_oye quotient ban 10 / 5   # 2
-chal_oye fuddu_chiz remainder ban 10 % 3  # 1
+chal_oye remainder ban 10 % 3  # 1
 chal_oye power ban 2 ** 3      # 8
 ```
 
@@ -302,17 +301,16 @@ chilla_we factorial(5)     # Output: 120
 kinna_lamba("hello")              # 5 (length)
 ```
 
-### List Functions
+### Built-in Lists/Array Functions
 ```jatti
 chal_oye numbers ban [3, 1, 4, 1, 5]
 
 kinna_lamba(numbers)              # 5 (length)
-sort_hoja_oye(numbers)            # Sorts list
-ulta_hoja_oye(numbers)            # Reverses list
-jod_oye(numbers)                  # 14 (sum)
-average_kad(numbers)              # 2.8 (average)
-sabton_vaddha(numbers)            # 5 (max)
-sabton_nikka(numbers)             # 1 (min)
+chal_sort_hoja(numbers)           # [1, 1, 3, 4, 5] (sorted)
+chal_reverse_hoja(numbers)        # [5, 1, 4, 1, 3] (reversed)
+ganao(numbers)                    # 14 (sum)
+sab_ton_vaddha(numbers)           # 5 (max)
+sab_ton_chhota(numbers)           # 1 (min)
 ```
 
 ### Dictionary Functions
@@ -320,26 +318,21 @@ sabton_nikka(numbers)             # 1 (min)
 chal_oye person ban {naam: "Singh", age: 25}
 
 kinna_lamba(person)               # 2 (number of keys)
-person.get_keys()                 # ["naam", "age"]
-person.get_values()               # ["Singh", 25]
+chilla_we person["naam"]          # Access by key
 ```
 
-### Type Conversion
+### File I/O Functions
 ```jatti
-chal_oye num_str ban "42"
-chal_oye num ban int(num_str)     # 42
-
-chal_oye float_str ban "3.14"
-chal_oye pi ban float(float_str)  # 3.14
-
-chal_oye str_num ban str(42)      # "42"
+likh("output.txt", "Hello Jatti") # Write to file
+padh("output.txt")                # Read from file
 ```
 
-### Range
+### Other Utility Functions
 ```jatti
-range(5)           # 0, 1, 2, 3, 4
-range(1, 5)        # 1, 2, 3, 4
-range(1, 10, 2)    # 1, 3, 5, 7, 9
+kism(5)                           # "number"
+kism("hello")                     # "string"
+kism([1, 2, 3])                   # "list"
+range_banao(5)                    # [0, 1, 2, 3, 4]
 ```
 
 ---
@@ -349,14 +342,14 @@ range(1, 10, 2)    # 1, 3, 5, 7, 9
 ```jatti
 chal_oye text ban "Hello World"
 
-text.upper_case_oye()             # "HELLO WORLD"
-text.lower_case_oye()             # "hello world"
-text.tut_ja_oye(" ")              # ["Hello", "World"]
-text.badal_ja_oye("World", "Jatti") # "Hello Jatti"
-text.haiga_hai("World")           # sach (sach)
-text.shuru_hunda_hai("Hello")     # sach (sach)
-text.khatam_hunda_hai("World")    # sach (sach)
-text.trim_hoja_oye()              # "Hello World"
+vada_likha(text)                  # "HELLO WORLD"
+chhota_likha(text)                # "hello world"
+vand_karo(text, " ")              # ["Hello", "World"]
+badal_de(text, "World", "Jatti")  # "Hello Jatti"
+dhundh_ja(text, "World")          # 6 (index)
+shuru_hunda(text, "Hello")        # sach (true)
+khatam_hunda(text, "World")       # sach (true)
+saf_karo("  Hello  ")             # "Hello"
 ```
 
 ---

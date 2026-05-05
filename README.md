@@ -411,8 +411,8 @@ ja_we
 | `ganao()` | Sum | `ganao([1,2,3])` → 6 |
 | `sab_ton_vaddha()` | Max | `sab_ton_vaddha([1,5,3])` → 5 |
 | `sab_ton_chhota()` | Min | `sab_ton_chhota([1,5,3])` → 1 |
-| `sorted()` | Sort | `sorted([3,1,2])` → [1,2,3] |
-| `reversed()` | Reverse | `reversed([1,2,3])` → [3,2,1] |
+| `chal_sort_hoja()` / `sorted()` | Sort | `chal_sort_hoja([3,1,2])` → [1,2,3] |
+| `chal_reverse_hoja()` / `reversed()` | Reverse | `chal_reverse_hoja([1,2,3])` → [3,2,1] |
 
 ---
 
